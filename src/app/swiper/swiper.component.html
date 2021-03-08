@@ -1,0 +1,24 @@
+
+<div  class="swiper-container" [swiper]="config" [(index)]="slideIndex">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        Swiper slide content 0
+      </div>
+      <div class="swiper-slide">
+        Swiper slide content 1
+      </div>
+      <div class="swiper-slide">
+        Swiper slide content 2
+      </div>
+    </div>
+  </div>
+<!--<swiper [config]="config" [(index)]="slideIndex" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+    <div *ngFor="let step of something;" class="swiper-slide cursor-pointer">
+        <div fxLayout="column">
+          <p>hi</p>
+          <h1>hello {{step}}</h1>
+        </div>
+    </div>
+  </swiper>-->
+
+  <button (click)="slideTo(2)">changeSlide</button>
