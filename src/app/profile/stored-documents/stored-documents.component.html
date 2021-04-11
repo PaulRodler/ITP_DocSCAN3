@@ -5,7 +5,7 @@
 <div id="page">
 
     <div class="header header-auto-show header-fixed header-logo-center">
-        <a [routerLink]="['/index']" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+        <a [routerLink]="['/index']" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
         <a href="#" class="header-title">Dokumente</a>
         <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i
                 class="fas fa-sun"></i></a>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="page-title page-title-fixed">
-        <a href="#" data-back-button class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
+        <a [routerLink]="['/index']"  class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
                 class="fa fa-arrow-left"></i></a>
         <h1>Dokumente</h1>
 
@@ -35,21 +35,21 @@
 
         <div class="search-results">
             <div class="card card-style" data-filter-item attr.data-filter-name="all">
-                <div class="content mx-1 mb-1">
+                <div class="content mx-1 mb-1" data-menu="selectFolder">
                     <span><i class="fa fa-2x fa-folder float-left color-red-dark mr-3"></i></span>
                     <span><i class="fa fa-arrow-right float-right mr-1 mt-1"></i></span>
                     <h3 class="">Foldername1</h3>
                 </div>
             </div>
             <div class="card card-style" data-filter-item attr.data-filter-name="all">
-                <div class="content mx-1 mb-1">
+                <div class="content mx-1 mb-1" data-menu="selectFolder">
                     <span><i class="fa fa-2x fa-folder float-left color-green-dark mr-3"></i></span>
                     <span><i class="fa fa-arrow-right float-right mr-1 mt-1"></i></span>
                     <h3 class="">Foldername2</h3>
                 </div>
             </div>
             <div class="card card-style" data-filter-item attr.data-filter-name="all">
-                <div class="content mx-1 mb-1">
+                <div class="content mx-1 mb-1" data-menu="selectFolder">
                     <span><i class="fa fa-2x fa-folder float-left color-black mr-3"></i></span>
                     <span><i class="fa fa-arrow-right float-right mr-1 mt-1"></i></span>
                     <h3 class="">Foldername3</h3>
@@ -70,6 +70,47 @@
               </div>
             </div>
           </div>
+
+    </div>
+
+    <div id="selectFolder" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
+        <div class="content mb-0 mt-3">
+
+            <h1 class="color-dark-dark">Categorien</h1>
+            <a href="#" routerLink="/storedDocs/files/1" class="card card-style bg-green-light" data-card-height="150">
+                <div class="card-center pl-3 ">
+                    <h1 class="color-white mb-n1 font-25">SEW</h1>
+                    <p class="color-white opacity-50 mb-0">G. Mitter </p>
+                </div>
+                <div class="card-center">
+                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
+                            class="fa fa-arrow-right"></i></span>
+                </div>
+                <div class="card-overlay bg-black opacity-60"></div>
+            </a>
+            <a href="#" routerLink="/storedDocs/files/1" class="card card-style bg-red-light" data-card-height="150">
+                <div class="card-center pl-3">
+                    <h1 class="color-white mb-n1 font-25">ITP</h1>
+                    <p class="color-white opacity-50 mb-0">A. Gaisberger</p>
+                </div>
+                <div class="card-center">
+                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
+                            class="fa fa-arrow-right"></i></span>
+                </div>
+                <div class="card-overlay bg-black opacity-60"></div>
+            </a>
+            <a href="#" routerLink="/storedDocs/files/1" class="card card-style bg-blue-light" data-card-height="150">
+                <div class="card-center pl-3">
+                    <h1 class="color-white mb-n1 font-25">Mathematik</h1>
+                    <p class="color-white opacity-50 mb-0">M. Überwimmer</p>
+                </div>
+                <div class="card-center">
+                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
+                            class="fa fa-arrow-right"></i></span>
+                </div>
+                <div class="card-overlay bg-black opacity-60"></div>
+            </a>
+        </div>
 
     </div>
 </div>

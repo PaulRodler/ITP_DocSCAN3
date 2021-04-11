@@ -5,7 +5,7 @@
 <div id="page">
 
     <div class="header header-auto-show header-fixed header-logo-center">
-        <a [routerLink]="['/index']" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+        <a [routerLink]="['/index']" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
         <a href="#" class="header-title">Gescannte Gerichte</a>
         <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i
                 class="fas fa-sun"></i></a>
@@ -13,14 +13,8 @@
                 class="fas fa-moon"></i></a>
     </div>
 
-    <div id="footer-bar" class="footer-bar-4">
-        <a href="#" id="tab-0" class="tabs"><i class="fa fa-cog"></i></a>
-        <a href="#" id="tab-1" class="tabs" style="color: #0f6674"><i class="fa fa-home"></i></a>
-        <!--<a href="#" id="tab-2" class="tabs"><i class="fa fa-bars"></i></a>-->
-    </div>
-
     <div class="page-title page-title-fixed">
-        <a href="#" data-back-button class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
+        <a [routerLink]="['/index']" class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
                 class="fa fa-arrow-left"></i></a>
         <h1>Einstellung</h1>
 
@@ -33,24 +27,21 @@
         <div class="content">
             <div class="card mb-0 mt-2 rounded-s" style="overflow-x: scroll">
                 <div class="card-body">
-                    <div class="input-style input-style-2" style="margin-bottom: 0;">
+                    <div class="input-style input-style-2">
+                        <span class="input-style-1-active">Username</span>
+                        <em>(required)</em>
+                        <input type="name" placeholder="First Name" value="Niklas">
+                    </div>
+                    <div class="input-style input-style-2">
                         <span class="input-style-1-active">Vorname</span>
                         <em>(required)</em>
                         <input type="name" placeholder="First Name" value="Niklas">
                     </div>
-                </div>
-            </div>
-            <div class="card mb-0 mt-2 rounded-s" style="overflow-x: scroll">
-                <div class="card-body">
-                    <div class="input-style input-style-2" style="margin-bottom: 0;">
+                    <div class="input-style input-style-2">
                         <span class="input-style-1-active">Nachname</span>
                         <em>(required)</em>
                         <input type="name" placeholder="Last Name" value="Leitlmeier">
                     </div>
-                </div>
-            </div>
-            <div class="card mb-0 mt-2 rounded-s" style="overflow-x: scroll">
-                <div class="card-body">
                     <div class="input-style input-style-2 mb-3 pb-1">
                         <span class="input-style-1-active">Email</span>
                         <em>(required)</em>
@@ -62,46 +53,6 @@
                         <input type="password" placeholder="Location" value="Passw0rt!">
                     </div>
                     <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Adresse</span>
-                        <em>(required)</em>
-                        <input type="text" placeholder="Location" value="Bahnhofstraße 52">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Stadt</span>
-                        <em>(required)</em>
-                        <input type="text" placeholder="Location" value="Traun">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Land</span>
-                        <em>(required)</em>
-                        <input type="text" placeholder="Location" value="Österreich">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Gewicht in kg</span>
-                        <em>(required)</em>
-                        <input type="number" placeholder="Location" value="75">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Größe in cm</span>
-                        <em>(required)</em>
-                        <input type="number" placeholder="Location" value="183">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Geburtstag</span>
-                        <em><i class="fa fa-angle-down"></i></em>
-                        <input type="date" value="">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Bankdaten</span>
-                        <em>(required)</em>
-                        <input type="text" placeholder="" value="AT12 3456 7891 0112">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Deine Sportlichkeit</span>
-                        <em>(required)</em>
-                        <input type="number" aria-valuemin="1" aria-valuemax="10" value="8">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
                         <span class="input-style-1-active">Dein Geschlecht:</span>
                         <select name="cars" id="geschlecht">
                             <option value="maennlich">Männlich</option>
@@ -109,39 +60,7 @@
                             <option value="sonstiges">Sonstiges</option>
                         </select>
                     </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Dein Bio Geschlecht:</span>
-
-                        <select name="cars" id="biogeschlecht">
-                            <option value="maennlich">Männlich</option>
-                            <option value="weiblich">Weiblich</option>
-                            <option value="sonstiges">Sonstiges</option>
-                        </select>
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Dein/e Ziel/e</span>
-
-                        <select name="cars" id="ziele">
-                            <option value="maennlich">Abnehmen</option>
-                            <option value="weiblich">Zunehmen</option>
-                            <option value="sonstiges">Gewicht halten</option>
-                        </select>
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Deine Ernährung:</span>
-
-                        <select name="cars" id="ernaehrung">
-                            <option value="maennlich">Low Carb</option>
-                            <option value="weiblich">Vegan</option>
-                            <option value="sonstiges">Vegetarisch</option>
-                        </select>
-                    </div>
-                    <div class="input-style input-style-2 input-required">
-                        <span class="input-style-1-active">Deine Nachricht</span>
-                        <textarea class="form-control" placeholder="Enter your Message"
-                            value=" Niklas ist ein großer Ehrenmann!"></textarea>
-                    </div>
-                    <a href="#" class="btn btn-full btn-m gradient-highlight rounded-s font-13 font-600 mt-4">Änderungen
+                    <a class="btn btn-full btn-m bg-yellow-dark rounded-s font-13 font-600 mt-4">Änderungen
                         speichern</a>
                 </div>
             </div>

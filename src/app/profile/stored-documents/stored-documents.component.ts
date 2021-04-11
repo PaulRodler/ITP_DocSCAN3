@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StoredDocumentsService } from './stored-documents.service';
 
 @Component({
   selector: 'app-stored-documents',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoredDocumentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private storedService: StoredDocumentsService) { }
+  selectedMenu = [];
 
   ngOnInit(): void {
+    
   }
 
 }

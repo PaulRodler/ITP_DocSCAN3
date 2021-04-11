@@ -16,6 +16,9 @@ import { SwiperComponent } from './swiper/swiper.component';
 import { HttpClientJsonpModule, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { DataService } from './data.service';
+import { FileListComponent } from './profile/stored-documents/file-list/file-list.component';
+import { FileViewComponent } from './profile/stored-documents/file-view/file-view.component';
+import { SharedDocumentsComponent } from './profile/shared-documents/shared-documents.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { DataService } from './data.service';
     PersonalDataComponent,
     SettingsComponent,
     StoredDocumentsComponent,
-    SwiperComponent
+    SwiperComponent,
+    FileListComponent,
+    FileViewComponent,
+    SharedDocumentsComponent
   ],
   imports: [
     BrowserModule,

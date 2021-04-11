@@ -7,10 +7,8 @@
     <div class="header header-auto-show header-fixed header-logo-center">
         <a> </a>
         <a [routerLink]="['/index']" class="header-title">DocScan</a>
-        <a href="#" data-menu="menu-plus" class="header-icon header-icon-4 color-green-dark"><i
+        <a href="#" data-menu="menu-plus" class="header-icon header-icon-4 color-yellow-dark"><i
                 class="fas fa-plus"></i></a>
-        <!--<a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-light"><i class="fas fa-moon"></i></a>-->
     </div>
 
 
@@ -18,41 +16,36 @@
 
 
     <div id="footer-bar" class="footer-bar-4">
-        <a href="#" id="tab-0" class="tabs"><i class="fa fa-cog"></i></a>
-        <a href="#" id="tab-1" class="tabs" style="color: #0f6674"><i class="fa fa-home"></i></a>
-        <!--<a href="#" id="tab-2" class="tabs"><i class="fa fa-bars"></i></a> -->
+        <a href="#" (click)="slideTo(0)" id="tab-0" class="tabs" [style]="slideIndex === 0 ? 'color: #0f6674': ''"><i class="fa fa-cog"></i></a>
+        <a href="#" (click)="slideTo(1)" id="tab-1" class="tabs" [style]="slideIndex === 1 ? 'color: #0f6674': ''"><i class="fa fa-home"></i></a>
     </div>
 
     <div class="page-title page-title-fixed">
-        <a> </a>
         <h1 onclick="location.reload()" class="color-dark-dark"> DocScan</h1>
-        <!--
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
-        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
-         -->
-        <a href="#" class="page-title-icon shadow-xl bg-green-dark color-theme" data-menu="menu-plus"><i
+        <a href="#" class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-plus"><i
                 class="fa fa-plus"></i></a>
     </div>
     <div class="page-title-clear"></div>
 
     <div class="page-content bg">
-        
+
         <div class="swiper-container" [swiper]="configMain" [(index)]="slideIndex">
             <div class="swiper-wrapper">
 
-                
+
                 <div class="swiper-slide">
-                    <div class="card card-style bg-6" data-card-height="40vh">
-                        <div class="card-top">
-                            <a href="#" class="btn btn-s border-white color-white float-right mt-2 mr-2 rounded-sm"><i
-                                    class="fa fa-camera pr-2"></i>Upload </a>
+                    <div class="card card-style mt-3" data-card-height="200" style="background-image: url(https://as2.ftcdn.net/jpg/01/06/41/37/500_F_106413799_z8Nkc2Ee64M8ro0I4exr3aof4bel8Hlx.jpg);">
+
+                        <div class="card-bottom pl-3 pb-3">
+
+                            <h1 class="font-24 mb-3 color-white" style="margin-left: -30px;">Vorname <br> Nachname</h1>
+                            <br>
+                            <div class="text-center">
+                                <h4 class="color-white">10</h4>
+                                <h5 class="color-white opacity-60"><i class="fa fa-file-alt"></i> Total Files</h5>
+                            </div>
                         </div>
-                        <div class="card-bottom ml-3 mr-3 ">
-                            <h1 class="font-40 line-height-xl color-white">Niklas <br>Leitlmeier</h1>
-                            <p class="color-white opacity-60"><i class="fa fa-map-marker mr-2"></i>Linz, Österreich
-                            </p>
-                        </div>
-                        <div class="card-overlay bg-gradient"></div>
+                        <div class="card-overlay bg-black opacity-80"></div>
                     </div>
                     <div class="card card-style">
                         <div class="list-group list-custom-small list-menu ml-0 mr-2">
@@ -61,7 +54,7 @@
                                 <span class="font-16 color-black"><b>Dokument Übersicht</b></span>
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                            <a [routerLink]="['/receivedDocs']" class="ml-1">
+                            <a [routerLink]="['/sharedDocs']" class="ml-1">
                                 <i class="fa fa-vials bg-green-dark"></i>
                                 <span class="font-16 color-black"><b>Geteilte Dokumente</b></span>
                                 <i class="fa fa-angle-right"></i>
@@ -86,8 +79,8 @@
                 -->
                 <div class="swiper-slide">
 
-                    <div class="card card-style bg-white mt-3" data-card-height="200">
-                        
+                    <div class="card card-style mt-3" data-card-height="200" style="background-image: url(https://freerangestock.com/sample/136493/various-business-graphs-and-charts-background.jpg);">
+
                         <div class="card-bottom pl-3 pb-3">
 
                             <h1 class="font-24 mb-3 color-white" style="margin-left: -30px;">Übersicht</h1>
@@ -115,76 +108,79 @@
 
 
                     <h1 class="color-dark-dark">Zuletzt geöffnet</h1>
-                        <div  class="swiper-containe mx-2" [swiper]="configFiles" style="overflow: hidden;">
-                            <div class="swiper-wrapper owl-carousel">
-                
-                                <div class="swiper-slide">
-                                    <div class="item">
-                                        <a href="#" data-menu="klassenordner">
-                                            <div data-card-height="220" class="card shadow-xl rounded-m " style="background-color: rgba(255, 206, 84, 0.8)">
-                                                <i class="fa fa-folder fa-7x color-yellow-dark" style="margin-top: 20px"></i>
-                                                <div class="card-bottom text-center">
-                                                    <h4 class="color-white font-800 mb-3">5BHIT</h4>
-                                                </div>
-                                                <div class="card-overlay bg-gradient"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>                   
-                                <div class="swiper-slide">
-                                    <div class="item">
-                                        <a href="#" data-menu="klassenordner">
-                                            <div data-card-height="220" class="card shadow-xl rounded-m bg-red-light">
-                                                <i class="fa fa-folder fa-7x color-red-dark" style="margin-top: 20px"></i>
-                                                <div class="card-bottom text-center">
-                                                    <h4 class="color-white font-800 mb-3">Mealbook</h4>
-                                                </div>
-                                                <div class="card-overlay bg-gradient"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-    
-                                <div class="swiper-slide">
-                                    <div class="item">
-                                        <a href="#" data-menu="klassenordner">
-                                            <div data-card-height="220" class="card shadow-xl rounded-m bg-green-light">
-                                                <i class="fa fa-folder fa-7x color-green-dark" style="margin-top: 20px"></i>
-                                                <div class="card-bottom text-center">
-                                                    <h4 class="color-white font-800 mb-3">3BHIT</h4>
-                                                </div>
-                                                <div class="card-overlay bg-gradient"></div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
+                    <div class="swiper-containe mx-2" [swiper]="configFiles" style="overflow: hidden;">
+                        <div class="swiper-wrapper owl-carousel">
 
-                                <div class="swiper-slide">
-                                    <div class="item">
-                                        <a href="#" data-menu="klassenordner">
-                                            <div data-card-height="220" class="card shadow-xl rounded-m bg-blue-light">
-                                                <i class="fa fa-folder fa-7x color-blue-dark" style="margin-top: 20px"></i>
-                                                <div class="card-bottom text-center">
-                                                    <h4 class="color-white font-800 mb-3">4BHIT</h4>
-                                                </div>
-                                                <div class="card-overlay bg-gradient"></div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <a href="#" data-menu="klassenordner">
+                                        <div data-card-height="220" class="card shadow-xl rounded-m "
+                                            style="background-color: rgba(255, 206, 84, 0.8)">
+                                            <i class="fa fa-folder fa-7x color-yellow-dark"
+                                                style="margin-top: 20px"></i>
+                                            <div class="card-bottom text-center">
+                                                <h4 class="color-white font-800 mb-3">5BHIT</h4>
                                             </div>
-                                        </a>
-                                    </div>
+                                            <div class="card-overlay bg-gradient"></div>
+                                        </div>
+                                    </a>
                                 </div>
-
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <a href="#" data-menu="klassenordner">
+                                        <div data-card-height="220" class="card shadow-xl rounded-m bg-red-light">
+                                            <i class="fa fa-folder fa-7x color-red-dark" style="margin-top: 20px"></i>
+                                            <div class="card-bottom text-center">
+                                                <h4 class="color-white font-800 mb-3">Mealbook</h4>
+                                            </div>
+                                            <div class="card-overlay bg-gradient"></div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
 
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <a href="#" data-menu="klassenordner">
+                                        <div data-card-height="220" class="card shadow-xl rounded-m bg-green-light">
+                                            <i class="fa fa-folder fa-7x color-green-dark" style="margin-top: 20px"></i>
+                                            <div class="card-bottom text-center">
+                                                <h4 class="color-white font-800 mb-3">3BHIT</h4>
+                                            </div>
+                                            <div class="card-overlay bg-gradient"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <a href="#" data-menu="klassenordner">
+                                        <div data-card-height="220" class="card shadow-xl rounded-m bg-blue-light">
+                                            <i class="fa fa-folder fa-7x color-blue-dark" style="margin-top: 20px"></i>
+                                            <div class="card-bottom text-center">
+                                                <h4 class="color-white font-800 mb-3">4BHIT</h4>
+                                            </div>
+                                            <div class="card-overlay bg-gradient"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
 
                         </div>
-                
+
+
+                    </div>
+
 
 
 
                     <div class="content mb-0 mt-3">
 
                         <h1 class="color-dark-dark"> Alle Ordner</h1>
-                        <a href="#" data-menu="klassenordner" class="card card-style bg-yellow-light" data-card-height="150">
+                        <a href="#" data-menu="klassenordner" class="card card-style bg-yellow-light"
+                            data-card-height="150">
                             <div class="card-center pl-3 ">
                                 <h1 class="mb-n1 font-25">5BHIT</h1>
                                 <p class="color-white opacity-50 mb-0">HTL Traun </p>
@@ -195,7 +191,8 @@
                             </div>
                             <div class="card-overlay bg-black opacity-20"></div>
                         </a>
-                        <a href="#" data-menu="klassenordner" class="card card-style bg-blue-light" data-card-height="150">
+                        <a href="#" data-menu="klassenordner" class="card card-style bg-blue-light"
+                            data-card-height="150">
                             <div class="card-center pl-3">
                                 <h1 class="mb-n1 font-25">4BHIT</h1>
                                 <p class="color-white opacity-50 mb-0">HTL Traun</p>
@@ -207,7 +204,8 @@
                             <div class="card-overlay bg-black opacity-20"></div>
                         </a>
 
-                        <a href="#" data-menu="klassenordner" class="card card-style bg-green-light" data-card-height="150">
+                        <a href="#" data-menu="klassenordner" class="card card-style bg-green-light"
+                            data-card-height="150">
                             <div class="card-center pl-3">
                                 <h1 class="mb-n1 font-25">3BHIT</h1>
                                 <p class="color-white opacity-50 mb-0">HTL Traun</p>
@@ -218,7 +216,8 @@
                             </div>
                             <div class="card-overlay bg-black opacity-20"></div>
                         </a>
-                        <a href="#" data-menu="klassenordner" class="card card-style bg-red-light" data-card-height="150">
+                        <a href="#" data-menu="klassenordner" class="card card-style bg-red-light"
+                            data-card-height="150">
                             <div class="card-center pl-3">
                                 <h1 class="mb-n1 font-25">Mealbook</h1>
                                 <p class="color-white opacity-50 mb-0">Diplomarbeit</p>
@@ -333,8 +332,7 @@
         <div class="divider divider-margins mt-3 mb-0"></div>
         <div class="content mt-0">
             <div class="list-group list-custom-large">
-                <a href="#" class="color-theme" data-menu="menu-plus-foto"
-                    style="text-align: left; padding-left: 5%;">
+                <a href="#" class="color-theme" data-menu="menu-plus-foto" style="text-align: left; padding-left: 5%;">
                     <i class="fa fa-camera fa-2x"></i>
                     <span style="font-size: 20px; padding-top: 2%"> Jetzt fotografieren</span>
                     <i class="fa fa-angle-right"></i>
@@ -387,9 +385,8 @@
 
                 <div class="row text-center row-cols-3 mb-0">
                     <a class="col mb-4" data-lightbox="gallery-1" href="images/pictures/27t.jpg"
-                        title="Vynil and Typerwritter"><img src="images/empty.png"
-                            data-src="images/pictures/32s.jpg" class="preload-img img-fluid rounded-xs"
-                            alt="img"></a>
+                        title="Vynil and Typerwritter"><img src="images/empty.png" data-src="images/pictures/32s.jpg"
+                            class="preload-img img-fluid rounded-xs" alt="img"></a>
                     <a class="col mb-4" data-lightbox="gallery-1" href="images/pictures/22t.jpg"
                         title="Cream Cookie"><img src="images/empty.png" data-src="images/pictures/18s.jpg"
                             class="preload-img img-fluid rounded-xs" alt="img"></a>
@@ -475,5 +472,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>
