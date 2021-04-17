@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     console.log(environment.csrfToken);
 
     this.loginService.login(this.inputs).subscribe(data => {
-      if(data.state == "success"){
+      if(data.code === 202){
         localStorage.setItem('docScan_authToken', data.data.token);
         environment.authToken = data.data.token;
         this.data.authToken = data.data.token;

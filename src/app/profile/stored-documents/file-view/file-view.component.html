@@ -3,9 +3,9 @@
 </div>
 
 <div id="page">
-
     <div class="header header-auto-show header-fixed header-logo-center">
-        <a [routerLink]="['/storedDocs/files/1']"  class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+        <a [routerLink]="['/storedDocs/files/1']" class="header-icon header-icon-1"><i
+                class="fas fa-arrow-left"></i></a>
         <a href="#" class="header-title">Dateiname</a>
         <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i
                 class="fas fa-sun"></i></a>
@@ -14,8 +14,8 @@
     </div>
 
     <div class="page-title page-title-fixed">
-        <a [routerLink]="['/storedDocs/files/1']" class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
-                class="fa fa-arrow-left"></i></a>
+        <a routerLink="/storedDocs/files/{{ file.category }} " class="page-title-icon shadow-xl color-theme"
+            style="margin-left: 2%"><i class="fa fa-arrow-left"></i></a>
         <h1>Dateiname</h1>
 
         <a href="#" class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-share">
@@ -25,46 +25,95 @@
 
     <div class="page-content bg">
         <div class="card card-style">
-            <div class="card bg-6" data-card-height="250">
+            <div class="card bg-red-dark" data-card-height="80">
                 <div class="card-bottom pb-3 pr-3 pl-3">
                     <div class="row mb-0">
                         <div class="col-6 text-center">
-                            <span class="color-white opacity-90"><i class="fa fa-user pr-2"></i>Geteilt: 2</span>
+                            <h6 class="color-white opacity-90"><i class="fa fa-user pr-2"></i>Geteilt: {{
+                                file.shared.length }}</h6>
                         </div>
                         <div class="col-6 text-center">
-                            <span class="color-white opacity-90"><i class="fa fa-clock pr-2"></i> 22.03.2020</span>
+                            <h6 class="color-white opacity-90"><i class="fa fa-clock pr-2"></i> 22.03.2020</h6>
                         </div>
                     </div>
                 </div>
-                <div class="card-overlay bg-gradient rounded-0"></div>
+                <div class="card-overlay bg-black opacity-40 rounded-0"></div>
             </div>
             <div class="content mt-n4">
-                <span class="float-right mt-2"><i class="fa fa-edit fa-2x"></i></span>
-                <div class="float-left mt-2">
-                    <p class="color-highlight font-600 mb-n1">
-                        <a href="#" class="chip chips-s bg-blue-dark pl-2">Niklas Leitlmeier</a>
-                        <a href="#" class="chip chips-s bg-blue-dark pl-2">Paul Rodler</a>
-                    </p>
-                    <h1>Spinatstrudel mit Dipping</h1>
+                <div class="row mt-1 mb-0">
+                    <div class="col-9">
+                        <p class="color-highlight font-12 mb-n1">
+                            <span href="#" class="chip chips-s bg-blue-dark pl-2" *ngFor="let user of file.shared">
+                                <i class="fa fa-times-circle mx-0" (click)="unshare(user.uid)"></i> {{ user.uname }}</span>
+                        </p>
+                    </div>
+                    <div class="col-3">
+                        <a data-menu="bearbeiten"> <span class="float-right mt-2"><i
+                                    class="fa fa-edit fa-2x"></i></span></a>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <h1 *ngIf="disableeditMode">{{ file.name }}</h1>
+                    <div class="input-style input-style-2 mt-2" *ngIf="!disableeditMode">
+                        <span class="input-style-1-active">Name</span>
+                        <input type="text" [(ngModel)]="file.name">
+                    </div><br>
+                    <div class="input-style input-style-2">
+                        <span class="input-style-1-active">Inhalt</span><br>
+                        <img src="{{file.content}}" *ngIf="file.file_type === 'img'" aria-label="file content"
+                            style="object-fit: contain; height: auto; width: 100%;">
+                        <textarea [(ngModel)]="file.content" *ngIf="file.file_type === 'txt'"
+                            [disabled]="disableeditMode" min-rows="3"></textarea>
+                    </div>
+                    <span (click)="save();"
+                        class="btn btn-full btn-l color-green-dark border-green-dark mt-4 rounded-s mb-2"
+                        [class]="disableeditMode ? 'd-none': ''">Änderungen
+                        speichern</span>
                 </div>
                 <div class="clearfix"></div>
             </div>
-        </div>     
-
-    </div>
-    <div id="menu-share" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
-        <div class="content mb-0 mt-3">
-            <h3>Datei teilen:</h3>
-            <div class="input-style input-light has-icon input-style-1 input-required">
-                <i class="input-icon fa fa-user" style="padding-left: 2%"></i>
-                <span>Email</span>
-                <input type="name" placeholder="Email" class="rounded-s bg-gray-dark opacity-90"
-                    style="opacity: 0.5">
-            </div>
-            <a href="#" class="btn btn-full btn-l color-yellow-dark border-yellow-dark mt-4 rounded-s mb-2">Teilen</a>
         </div>
 
     </div>
 
-    
+
+    <div id="menu-share" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
+        <div class="content mb-0 mt-3">
+            <h3>Datei teilen mit:</h3>
+            <span>Datei-Typ</span>
+            <div class="input-style input-light has-icon input-style-1 input-required mb-3 pb-1">
+                <select name="cars" id="geschlecht" [(ngModel)]="shareWith.uid">
+                    <option value="{{u.uid}}" *ngFor="let u of allUsers"> {{u.uname}}</option>
+                </select>
+            </div>
+            <span (click)="share()"
+                class="btn btn-full btn-l color-yellow-dark border-yellow-dark mt-4 rounded-s mb-2">Teilen</span>
+        </div>
+
+    </div>
+
+
+    <div id="bearbeiten" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
+        <div class="menu-title">
+            <h1> Ändern</h1>
+            <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="divider divider-margins mt-3 mb-0"></div>
+        <div class="content mt-0">
+            <div class="list-group list-custom-large">
+                <span (click)="toggleMode()" class="close-menu color-theme" style="text-align: left; padding-left: 5%;">
+                    <i class="fa fa-edit fa-2x"></i>
+                    <span style="font-size: 20px; padding-top: 2%"> Dokument bearbeiten</span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+                <span class="close-menu color-theme" style="text-align: left; padding-left: 5%;">
+                    <i class="fa fa-trash fa-2x"></i>
+                    <span (click)="delete()" style="font-size: 20px; padding-top: 2%">Dokument löschen </span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
 </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AppService } from './app.service';
 import { LoginService } from './login/login/login.service';
 
 
@@ -10,15 +11,19 @@ import { LoginService } from './login/login/login.service';
 })
 export class AppComponent {
   title = 'DocSCAN';
-  constructor(private loginService: LoginService) { }
+  constructor(private appService: AppService) { }
 
 
   ngOnInit(): void {
-    console.log("getcsrf");
-    this.loginService.getcsrf().subscribe(data =>{
-      console.log(data);
-      environment.csrfToken = data.data;
-    });
+    localStorage.removeItem('docSca_crsfToken')
+    /*console.log("getcsrf");
+    this.appService.getcsrf().subscribe(req =>{
+      console.log('TOKEN ');
+      console.log('CSRF ');
+      console.log(req.data);
+      localStorage.setItem('docSca_crsfToken', req.data)
+      environment.csrfToken = req.data;
+    });*/
   };
 }
 

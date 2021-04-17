@@ -6,17 +6,13 @@
 
     <div class="header header-auto-show header-fixed header-logo-center">
         <a [routerLink]="['/index']" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-        <a href="#" class="header-title">Dokumente</a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i
-                class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-light"><i
-                class="fas fa-moon"></i></a>
+        <a href="#" class="header-title">Geteilte</a>
     </div>
 
     <div class="page-title page-title-fixed">
         <a routerLink="/index" class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
                 class="fa fa-arrow-left"></i></a>
-        <h1>Dokumente</h1>
+        <h1>Geteilte</h1>
 
         <a href="#" class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-main"><i
                 class="fa fa-plus"></i></a>
@@ -34,19 +30,13 @@
         </div>
 
         <div class="search-results">
-            <div class="card card-style" data-filter-item attr.data-filter-name="all">
-                <div class="content mx-1 mb-1" data-menu="selectFile">
-                    <span><i class="fa fa-2x fa-folder float-left color-yellow-dark mr-3"></i></span>
+            <div class="card card-style" data-filter-item attr.data-filter-name="{{ item.file.name | lowercase}} {{item.uname | lowercase}}" *ngFor="let item of sharedDocs">
+                <a routerLink="/storedDocs/files/view/{{ item.file_id }}" class="content mx-1 mb-1">
+                    <span><i class="fa fa-2x fa-file-alt float-left color-gray-dark ml-1 mr-3"></i></span>
                     <span><i class="fa fa-arrow-right float-right mr-1 mt-1"></i></span>
-                    <h3 class="">Username</h3>
-                </div>
-            </div>
-            <div class="card card-style" data-filter-item attr.data-filter-name="all">
-                <div class="content mx-1 mb-1" data-menu="selectFile">
-                    <span><i class="fa fa-2x fa-folder float-left color-yellow-dark mr-3"></i></span>
-                    <span><i class="fa fa-arrow-right float-right mr-1 mt-1"></i></span>
-                    <h3 class="">Username</h3>
-                </div>
+                    <h3 class="">{{ item.file.name}}</h3>
+                    <span class="color-highlight ml-4">{{ item.uname }}</span>
+                </a>
             </div>
         </div>
         

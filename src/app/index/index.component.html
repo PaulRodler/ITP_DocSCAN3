@@ -38,10 +38,10 @@
 
                         <div class="card-bottom pl-3 pb-3">
 
-                            <h1 class="font-24 mb-3 color-white" style="margin-left: -30px;">Vorname <br> Nachname</h1>
+                            <h1 class="font-24 mb-3 color-white" style="margin-left: -30px;">{{ userData.user.firstname }} <br> {{ userData.user.surname }}</h1>
                             <br>
                             <div class="text-center">
-                                <h4 class="color-white">10</h4>
+                                <h4 class="color-white">{{ userData.fileCount }}</h4>
                                 <h5 class="color-white opacity-60"><i class="fa fa-file-alt"></i> Total Files</h5>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                 <i class="fa fa-angle-right"></i>
                             </a>
                             <a [routerLink]="['/sharedDocs']" class="ml-1">
-                                <i class="fa fa-vials bg-green-dark"></i>
+                                <i class="fa fa-share-alt bg-green-dark"></i>
                                 <span class="font-16 color-black"><b>Geteilte Dokumente</b></span>
                                 <i class="fa fa-angle-right"></i>
                             </a>
@@ -111,66 +111,21 @@
                     <div class="swiper-containe mx-2" [swiper]="configFiles" style="overflow: hidden;">
                         <div class="swiper-wrapper owl-carousel">
 
-                            <div class="swiper-slide">
+                            <div class="swiper-slide" *ngFor="let item of cats">
                                 <div class="item">
-                                    <a href="#" data-menu="klassenordner">
-                                        <div data-card-height="220" class="card shadow-xl rounded-m "
-                                            style="background-color: rgba(255, 206, 84, 0.8)">
-                                            <i class="fa fa-folder fa-7x color-yellow-dark"
+                                    <a routerLink="/storedDocs/files/{{item.id}}" data-menu="klassenordner">
+                                        <div data-card-height="220" class="card shadow-xl rounded-m bg-{{item.color}}-light">
+                                            <i class="fa fa-folder fa-7x color-{{ item.color }}-dark"
                                                 style="margin-top: 20px"></i>
                                             <div class="card-bottom text-center">
-                                                <h4 class="color-white font-800 mb-3">5BHIT</h4>
+                                                <h4 class="color-white font-800 mb-3">{{ item.name }}</h4>
                                             </div>
                                             <div class="card-overlay bg-gradient"></div>
                                         </div>
                                     </a>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="item">
-                                    <a href="#" data-menu="klassenordner">
-                                        <div data-card-height="220" class="card shadow-xl rounded-m bg-red-light">
-                                            <i class="fa fa-folder fa-7x color-red-dark" style="margin-top: 20px"></i>
-                                            <div class="card-bottom text-center">
-                                                <h4 class="color-white font-800 mb-3">Mealbook</h4>
-                                            </div>
-                                            <div class="card-overlay bg-gradient"></div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="item">
-                                    <a href="#" data-menu="klassenordner">
-                                        <div data-card-height="220" class="card shadow-xl rounded-m bg-green-light">
-                                            <i class="fa fa-folder fa-7x color-green-dark" style="margin-top: 20px"></i>
-                                            <div class="card-bottom text-center">
-                                                <h4 class="color-white font-800 mb-3">3BHIT</h4>
-                                            </div>
-                                            <div class="card-overlay bg-gradient"></div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="item">
-                                    <a href="#" data-menu="klassenordner">
-                                        <div data-card-height="220" class="card shadow-xl rounded-m bg-blue-light">
-                                            <i class="fa fa-folder fa-7x color-blue-dark" style="margin-top: 20px"></i>
-                                            <div class="card-bottom text-center">
-                                                <h4 class="color-white font-800 mb-3">4BHIT</h4>
-                                            </div>
-                                            <div class="card-overlay bg-gradient"></div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
+                            </div>                  
                         </div>
-
-
                     </div>
 
 
@@ -179,48 +134,10 @@
                     <div class="content mb-0 mt-3">
 
                         <h1 class="color-dark-dark"> Alle Ordner</h1>
-                        <a href="#" data-menu="klassenordner" class="card card-style bg-yellow-light"
-                            data-card-height="150">
+                        <a href="#" data-menu="selectFolder" class="card card-style bg-{{ item.color }}-dark"
+                            data-card-height="150" *ngFor="let item of directories" (click)="setMenu(item)">
                             <div class="card-center pl-3 ">
-                                <h1 class="mb-n1 font-25">5BHIT</h1>
-                                <p class="color-white opacity-50 mb-0">HTL Traun </p>
-                            </div>
-                            <div class="card-center">
-                                <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
-                                        class="fa fa-arrow-right"></i></span>
-                            </div>
-                            <div class="card-overlay bg-black opacity-20"></div>
-                        </a>
-                        <a href="#" data-menu="klassenordner" class="card card-style bg-blue-light"
-                            data-card-height="150">
-                            <div class="card-center pl-3">
-                                <h1 class="mb-n1 font-25">4BHIT</h1>
-                                <p class="color-white opacity-50 mb-0">HTL Traun</p>
-                            </div>
-                            <div class="card-center">
-                                <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
-                                        class="fa fa-arrow-right"></i></span>
-                            </div>
-                            <div class="card-overlay bg-black opacity-20"></div>
-                        </a>
-
-                        <a href="#" data-menu="klassenordner" class="card card-style bg-green-light"
-                            data-card-height="150">
-                            <div class="card-center pl-3">
-                                <h1 class="mb-n1 font-25">3BHIT</h1>
-                                <p class="color-white opacity-50 mb-0">HTL Traun</p>
-                            </div>
-                            <div class="card-center">
-                                <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
-                                        class="fa fa-arrow-right"></i></span>
-                            </div>
-                            <div class="card-overlay bg-black opacity-20"></div>
-                        </a>
-                        <a href="#" data-menu="klassenordner" class="card card-style bg-red-light"
-                            data-card-height="150">
-                            <div class="card-center pl-3">
-                                <h1 class="mb-n1 font-25">Mealbook</h1>
-                                <p class="color-white opacity-50 mb-0">Diplomarbeit</p>
+                                <h1 class="mb-n1 font-25">{{ item.name }}</h1>
                             </div>
                             <div class="card-center">
                                 <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
@@ -232,53 +149,11 @@
 
                 </div>
 
-
             </div>
         </div>
 
     </div>
 
-
-    <div id="klassenordner" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
-        <div class="content mb-0 mt-3">
-
-            <h1 class="color-dark-dark">Ihre Fächer</h1>
-            <a href="#" data-menu="fachordner" class="card card-style bg-6" data-card-height="150">
-                <div class="card-center pl-3 ">
-                    <h1 class="color-green-dark mb-n1 font-25">SEW</h1>
-                    <p class="color-white opacity-50 mb-0">G. Mitter </p>
-                </div>
-                <div class="card-center">
-                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
-                            class="fa fa-arrow-right"></i></span>
-                </div>
-                <div class="card-overlay bg-black opacity-60"></div>
-            </a>
-            <a href="#" data-menu="fachordner" class="card card-style bg-6" data-card-height="150">
-                <div class="card-center pl-3">
-                    <h1 class="color-green-dark mb-n1 font-25">ITP</h1>
-                    <p class="color-white opacity-50 mb-0">A. Gaisberger</p>
-                </div>
-                <div class="card-center">
-                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
-                            class="fa fa-arrow-right"></i></span>
-                </div>
-                <div class="card-overlay bg-black opacity-60"></div>
-            </a>
-            <a href="#" data-menu="fachordner" class="card card-style bg-6" data-card-height="150">
-                <div class="card-center pl-3">
-                    <h1 class="color-green-dark mb-n1 font-25">Mathematik</h1>
-                    <p class="color-white opacity-50 mb-0">M. Überwimmer</p>
-                </div>
-                <div class="card-center">
-                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
-                            class="fa fa-arrow-right"></i></span>
-                </div>
-                <div class="card-overlay bg-black opacity-60"></div>
-            </a>
-        </div>
-
-    </div>
 
     <div id="fachordner" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
         <div class="content mb-0 mt-3">
@@ -347,130 +222,30 @@
         </div>
     </div>
 
-
-    <div id="article-5" class="menu menu-box-modal rounded-0" data-menu-height="100%" data-menu-width="100%">
-        <div class="card rounded-0 bg-18" data-card-height="500">
-            <div class="card-top pt-4 pl-3 pr-3">
-                <a href="#" class="close-menu icon icon-s rounded-l bg-theme "><i
-                        class="fa fa-times color-red-dark"></i></a>
-                <a href="#" class="float-right icon icon-s rounded-l bg-theme color-theme ml-3"><i
-                        class="fa fa-home"></i></a>
-                <a href="#" class="float-right icon icon-s rounded-l bg-theme color-theme ml-3 show-on-theme-light"
-                    data-toggle-theme><i class="fa fa-moon"></i></a>
-                <a href="#" class="float-right icon icon-s rounded-l bg-theme color-theme ml-3 show-on-theme-dark"
-                    data-toggle-theme><i class="fa fa-sun"></i></a>
-            </div>
-            <div class="card-bottom pl-3 pr-3 mb-5 pb-4">
-                <h1 class="color-white font-36" id="lecTitle">Modal Card</h1>
-                <p class="color-white opacity-50" id="lecDescription">
-                    This article will deploy from the top of the page. You can deploy articles from any part of the
-                    page
-                    you want.
-                </p>
-            </div>
-            <div class="card-overlay bg-gradient"></div>
+    <div id="selectFolder" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
+        <div class="menu-title">
+            <p class="color-highlight" data-menu="menu-addCat"><i class="fa fa-plus"></i> Categorien</p>
+            <h1>{{ selectedMenu.name }}</h1>
+            <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
         </div>
-
-        <div class="card card-style card-full-right" style="margin-top:-100px; margin-bottom:-80px; z-index:1">
-            <div class="content">
-                <p class="mb-n1 color-highlight font-600">Awesome Article</p>
-                <h1>Read with Style</h1>
-                <p>It's difficult to design an article card that looks great on Mobile, not anymore. Appkit comes
-                    ready
-                    with designs that make your page look absolutely gorgeous. From here we'll keep writing with
-                    Lorem
-                    Ipsums o we can express the design even better. We know you'llhave your own awesome content to
-                    add
-                    here.</p>
-
-                <div class="row text-center row-cols-3 mb-0">
-                    <a class="col mb-4" data-lightbox="gallery-1" href="images/pictures/27t.jpg"
-                        title="Vynil and Typerwritter"><img src="images/empty.png" data-src="images/pictures/32s.jpg"
-                            class="preload-img img-fluid rounded-xs" alt="img"></a>
-                    <a class="col mb-4" data-lightbox="gallery-1" href="images/pictures/22t.jpg"
-                        title="Cream Cookie"><img src="images/empty.png" data-src="images/pictures/18s.jpg"
-                            class="preload-img img-fluid rounded-xs" alt="img"></a>
-                    <a class="col mb-4" data-lightbox="gallery-1" href="images/pictures/23t.jpg"
-                        title="Cookies and Flowers"><img src="images/empty.png" data-src="images/pictures/16s.jpg"
-                            class="preload-img img-fluid rounded-xs" alt="img"></a>
+        <div class="content mb-0 mt-3">
+            <div class="text-center mb-2" *ngIf="categories.length === 0">
+                <h6 >Dieser Ordner enthält keine Categorie</h6>
+            </div>
+            
+            <a routerLink="/storedDocs/files/{{item.id}}" *ngFor="let item of categories"
+                class="card card-style bg-{{item.color}}-light" data-card-height="150">
+                <br><br><br>
+                <div class="card-center pl-3 ">
+                    <h1 class="color-white mb-n1 font-25">{{ item.name}}</h1>
                 </div>
-
-                <h4>Appkit is Awesome</h4>
-                <p class="pb-4">Donec consectetur dictum nisi, et sodales lectus rutrum at. Donec lacinia metus quis
-                    metus rutrum, sed aliquet neque faucibus.Donec consectetur dictum nisi, et sodales lectus rutrum
-                    at.
-                    Donec lacinia metus quis metus rutrum, sed aliquet neque faucibus.Donec consectetur dictum nisi,
-                    et
-                    sodales lectus rutrum at. Donec lacinia metus quis metus rutrum, sed aliquet neque
-                    faucibus.Donec
-                    consectetur dictum nisi, et sodales lectus rutrum at. Donec lacinia metus quis metus rutrum, sed
-                    aliquet neque faucibus.</p>
-            </div>
+                <div class="card-center">
+                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
+                            class="fa fa-arrow-right"></i></span>
+                </div>
+                <div class="card-overlay bg-black opacity-60"></div>
+            </a>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <a href="#" class="close-menu btn btn-l rounded-sm font-600 btn-full btn-margins gradient-red">Close
-            Article</a>
-
 
     </div>
-
-    <div id="article-6" class="menu menu-box-modal rounded-0" data-menu-height="100%" data-menu-width="100%">
-        <div class="card rounded-0 bg-18" data-card-height="500">
-            <div class="card-top pt-4 pl-3 pr-3">
-                <a href="#" class="close-menu icon icon-s rounded-l bg-theme "><i
-                        class="fa fa-times color-red-dark"></i></a>
-                <a href="#" class="float-right icon icon-s rounded-l bg-theme color-theme ml-3"><i
-                        class="fa fa-home"></i></a>
-                <a href="#" class="float-right icon icon-s rounded-l bg-theme color-theme ml-3 show-on-theme-light"
-                    data-toggle-theme><i class="fa fa-moon"></i></a>
-                <a href="#" class="float-right icon icon-s rounded-l bg-theme color-theme ml-3 show-on-theme-dark"
-                    data-toggle-theme><i class="fa fa-sun"></i></a>
-            </div>
-            <div class="card-bottom pl-3 pr-3 mb-5 pb-4">
-                <h1 class="color-white font-36" id="lecTitle">Modal Card</h1>
-                <p class="color-white opacity-50" id="lecDescription">
-                    This article will deploy from the top of the page. You can deploy articles from any part of the
-                    page
-                    you want.
-                </p>
-            </div>
-            <div class="card-overlay bg-gradient"></div>
-        </div>
-
-        <div id="ordner2" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
-            <div class="menu-title">
-                <p class="color-highlight">Plus</p>
-                <h1>Essen Hinzufügen</h1>
-                <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
-            </div>
-            <div class="divider divider-margins mt-3 mb-0"></div>
-            <div class="content mt-0">
-                <div class="list-group list-custom-large">
-                    <a href="#" class="color-theme" data-menu="menu-plus-meals"
-                        style="text-align: left; padding-left: 5%;">
-                        <i class="fa fa-utensils fa-2x"></i>
-                        <span style="font-size: 20px; padding-top: 2%">Gerichte</span>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                    <a href="#" class="color-theme" data-menu="menu-plus-snacks"
-                        style="text-align: left; padding-left: 5%;">
-                        <i class="fa fa-apple-alt fa-2x"></i>
-                        <span style="font-size: 20px; padding-top: 2%">Snack</span>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                    <a href="#" class="color-theme" data-menu="menu-plus-eaa"
-                        style="text-align: left; padding-left: 5%; border-bottom: none">
-                        <i class="fa fa-prescription-bottle fa-2x"></i>
-                        <span style="font-size: 20px; padding-top: 2%">EAA</span>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

@@ -866,6 +866,12 @@ h1 .badge, h2 .badge, h3 .badge, h4 .badge, h5 .badge {
 .color-black {
   color: #000 !important;
 }
+.color-black-light {
+  color: #707883 !important;
+}
+.color-black-dark {
+  color: #000 !important;
+}
 
 .border-transparent {
   border-color: transparent !important;

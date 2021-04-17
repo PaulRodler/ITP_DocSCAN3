@@ -7,19 +7,13 @@
     <div class="header header-auto-show header-fixed header-logo-center">
         <a [routerLink]="['/index']" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
         <a href="#" class="header-title">Gescannte Gerichte</a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i
-                class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-light"><i
-                class="fas fa-moon"></i></a>
     </div>
 
     <div class="page-title page-title-fixed">
         <a [routerLink]="['/index']" class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
                 class="fa fa-arrow-left"></i></a>
         <h1>Einstellung</h1>
-
-        <a href="#" class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-main"><i
-                class="fa fa-plus"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-main"><i class="fa fa-plus"></i></a>
     </div>
     <div class="page-title-clear"></div>
 
@@ -30,38 +24,33 @@
                     <div class="input-style input-style-2">
                         <span class="input-style-1-active">Username</span>
                         <em>(required)</em>
-                        <input type="name" placeholder="First Name" value="Niklas">
+                        <input type="name" placeholder="First Name" [(ngModel)]="personalData.uname">
                     </div>
                     <div class="input-style input-style-2">
                         <span class="input-style-1-active">Vorname</span>
                         <em>(required)</em>
-                        <input type="name" placeholder="First Name" value="Niklas">
+                        <input type="name" placeholder="First Name" [(ngModel)]="personalData.firstname">
                     </div>
                     <div class="input-style input-style-2">
                         <span class="input-style-1-active">Nachname</span>
                         <em>(required)</em>
-                        <input type="name" placeholder="Last Name" value="Leitlmeier">
+                        <input type="name" placeholder="Last Name" [(ngModel)]="personalData.surname">
                     </div>
                     <div class="input-style input-style-2 mb-3 pb-1">
                         <span class="input-style-1-active">Email</span>
                         <em>(required)</em>
-                        <input type="email" placeholder="Email" value="name@domain.com">
-                    </div>
-                    <div class="input-style input-style-2 mb-3 pb-1">
-                        <span class="input-style-1-active">Passwort</span>
-                        <em>(required)</em>
-                        <input type="password" placeholder="Location" value="Passw0rt!">
+                        <input type="email" placeholder="Email" [(ngModel)]="personalData.email">
                     </div>
                     <div class="input-style input-style-2 mb-3 pb-1">
                         <span class="input-style-1-active">Dein Geschlecht:</span>
-                        <select name="cars" id="geschlecht">
-                            <option value="maennlich">Männlich</option>
-                            <option value="weiblich">Weiblich</option>
-                            <option value="sonstiges">Sonstiges</option>
+                        <select name="cars" id="geschlecht" [(ngModel)]="personalData.gender">
+                            <option value="m">Männlich</option>
+                            <option value="w">Weiblich</option>
+                            <option value="s">Sonstiges</option>
                         </select>
                     </div>
-                    <a class="btn btn-full btn-m bg-yellow-dark rounded-s font-13 font-600 mt-4">Änderungen
-                        speichern</a>
+                    <span (click)="edit();" class="btn btn-full btn-m bg-yellow-dark rounded-s font-13 font-600 mt-4">Änderungen
+                        speichern</span>
                 </div>
             </div>
         </div>

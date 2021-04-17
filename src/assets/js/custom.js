@@ -430,8 +430,8 @@ $(document).ready(function(){
                     $('[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass('disabled');
                 } 
                 if (searchVal == '') {
-                    console.log('test')
-                    setTimeout(function(){$('.search-results').addClass('disabled');},10);
+                    console.log('test');
+                    setTimeout(function(){$('.search-results').addClass('');},10);
                     $('[data-filter-item]').removeClass('disabled');
                 }
 
@@ -449,6 +449,35 @@ $(document).ready(function(){
             return false;
         }
         search_menu();
+
+        function search_filter(){
+            $('[data-search-filter]').change(function () {
+                var filterVal = $(this).val();
+                if (filterVal != '') {
+                    $('.search-results').removeClass('disabled');
+                    $('[data-filter-item]').addClass('disabled');
+                    $('[data-filter-item][data-filter-name*="' + filterVal.toLowerCase() + '"]').removeClass('disabled');
+                }
+                if (filterVal == '') {
+                    console.log('test');
+                    setTimeout(function(){$('.search-results').addClass('');},10);
+                    $('[data-filter-item]').removeClass('disabled');
+                }
+
+                var searchTotalItems = $('.search-results [data-filter-item]').length;
+                var search_results_error = $('.search-no-results');
+                var search_results_active = $('.search-results').find('[data-filter-item].disabled');
+                if (search_results_active.length == searchTotalItems) {
+                    $('.search-no-results').removeClass('disabled');
+                    $('.search-results').addClass('disabled');
+                }else{
+                    $('.search-no-results').addClass('disabled');
+                    $('.search-results').removeClass('disabled');
+                }
+            });
+            return false;
+        }
+        search_filter();
 
         //Owl Carousel Sliders
         setTimeout(function(){
@@ -1470,7 +1499,7 @@ $(document).ready(function(){
             window.addEventListener('online',  updateOnlineStatus);
             window.addEventListener('offline', updateOfflineStatus);
 
-            if(pwaNoCache == true){
+            /*if(pwaNoCache == true){
                 caches.delete('workbox-runtime').then(function() {});
                 sessionStorage.clear()
                 caches.keys().then(cacheNames => {
@@ -1478,7 +1507,7 @@ $(document).ready(function(){
                     caches.delete(cacheName);
                   });
                 });
-            }
+            }*/
         }
 
         //Externally loaded menu system.
@@ -1543,12 +1572,12 @@ $(document).ready(function(){
                 }
             };
           var smoothState = $('#page').smoothState(options).data('smoothState');
-           smoothState.clear();
+           // smoothState.clear();
         });
     }
 
     //Activate Development mode. Keeps caches clear.
-    if(isDevMode === true){
+    /*if(isDevMode === true){
         if(!$('.reloader').length){$('body').append('<a href="#" class="reloader" style="opacity:1; position:fixed; background-color:#000; color:#FFF; z-index:9999; bottom:100px; left:50%; margin-left:-70px; border-radius:10px; width:140px; line-height:40px; text-align:center;">Developer Mode</a>');}
         $('.reloader').on('click',function(){window.location.reload(true);})
         caches.delete('workbox-runtime').then(function(){});
@@ -1559,5 +1588,14 @@ $(document).ready(function(){
             caches.delete(cacheName);
           });
         });
-    }
+    }*/
+    
+    //Registering The Service Worker    
+    /*if(pwaEnabled === true){
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('_service-worker.js', {scope: ''});
+          });
+        }    
+    } */   
 }); 

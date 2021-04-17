@@ -7,10 +7,6 @@
     <div class="header header-auto-show header-fixed header-logo-center">
         <a [routerLink]="['/storedDocs']" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
         <a href="#" class="header-title">Dateien</a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i
-                class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-light"><i
-                class="fas fa-moon"></i></a>
     </div>
 
     <div class="page-title page-title-fixed">
@@ -18,42 +14,52 @@
                 class="fa fa-arrow-left"></i></a>
         <h1>Dateien</h1>
 
-        <a href="#" class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-main"><i
+        <a class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-add"><i
                 class="fa fa-plus"></i></a>
     </div>
     <div class="page-title-clear"></div>
 
     <div class="page-content bg">
+        <div class="text-center" *ngIf="errorMsg">
+            <h6>{{ errorMsg }}</h6>
+        </div>
         <div class="card card-style">
             <div class="list-group list-custom-large">
-                <a routerLink="/storedDocs/files/view/1" class="ml-1 px-2">
-                    <span>HÜ #1</span>
-                    <strong>Genauere Beschreibung</strong>
-                    <span class="badge bg-yellow-dark font-11 color-white">.PNG</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                <a routerLink="/storedDocs/files/view/1" class="ml-1 px-2">
-                    <span>HÜ #1</span>
-                    <strong>Genauere Beschreibung</strong>
-                    <span class="badge bg-yellow-dark font-11 color-white">.PNG</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                <a routerLink="/storedDocs/files/view/1" class="ml-1 px-2">
-                    <span>HÜ #1</span>
-                    <strong>Genauere Beschreibung</strong>
-                    <span class="badge bg-red-dark font-11 color-white">.TXT</span>
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                <a routerLink="/storedDocs/files/view/1" class="ml-1 px-2">
-                    <span>HÜ #1</span>
-                    <strong>Genauere Beschreibung</strong>
-                    <span class="badge bg-red-dark font-11 color-white">.TXT</span>
+                <a routerLink="/storedDocs/files/view/{{item.file_id}}" *ngFor="let item of files" class="ml-1 px-2">
+                    <span>{{ item.name }}</span>
+                    <span class="badge bg-yellow-dark font-11 color-white">{{ item.file_type }}</span>
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div>
-        </div>     
+        </div>
 
     </div>
 
-    
+    <div id="menu-add" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
+        <div class="content mb-0 mt-3">
+            <h3>Datei Hinzufügen</h3>
+        </div>
+        <div class="content">
+            <span>Name</span>
+            <div class="input-style input-light has-icon input-style-1 input-required">
+                <i class="input-icon fa fa-heading" style="padding-left: 2%"></i>
+                <input type="name" [(ngModel)]="addFile.name" class="rounded-s bg-gray-dark opacity-90" style="opacity: 0.5">
+            </div>
+            <span>Inhalt</span>
+            <div class="input-style input-light has-icon input-style-1 input-required">
+                <textarea type="name" [(ngModel)]="addFile.content" class="rounded-s bg-gray-dark opacity-90" style="opacity: 0.5"></textarea>
+            </div>
+            <span>Datei-Typ</span>
+            <div class="input-style input-light has-icon input-style-1 input-required mb-3 pb-1">
+                <select name="cars" id="geschlecht" [(ngModel)]="addFile.file_type">
+                    <option value="txt">Text</option>
+                    <option value="img">Image</option>
+                </select>
+            </div>
+            <span (click)="add()" class="btn btn-full btn-l color-green-dark border-green-dark mt-4 rounded-s mb-2">Hinzufügen</span>
+        </div>
+        
+    </div>
+
+
 </div>

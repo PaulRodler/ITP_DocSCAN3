@@ -7,18 +7,14 @@
     <div class="header header-auto-show header-fixed header-logo-center">
         <a [routerLink]="['/index']" class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
         <a href="#" class="header-title">Dokumente</a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i
-                class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-light"><i
-                class="fas fa-moon"></i></a>
     </div>
 
     <div class="page-title page-title-fixed">
-        <a [routerLink]="['/index']"  class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
+        <a [routerLink]="['/index']" class="page-title-icon shadow-xl color-theme" style="margin-left: 2%"><i
                 class="fa fa-arrow-left"></i></a>
         <h1>Dokumente</h1>
 
-        <a href="#" class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-main"><i
+        <a href="#" class="page-title-icon shadow-xl bg-yellow-dark color-theme" data-menu="menu-plusFolder"><i
                 class="fa fa-plus"></i></a>
     </div>
     <div class="page-title-clear"></div>
@@ -28,59 +24,54 @@
             <div class="search-box search-dark shadow-xl border-0 bg-theme rounded-sm">
                 <i class="fa fa-search"></i>
                 <label>
-                  <input type="text" class="border-0" placeholder="Suche " data-search>
+                    <input type="text" class="border-0" placeholder="Suche " data-search>
                 </label>
-            </div>        
+            </div>
         </div>
 
         <div class="search-results">
-            <div class="card card-style" data-filter-item attr.data-filter-name="all">
-                <div class="content mx-1 mb-1" data-menu="selectFolder">
-                    <span><i class="fa fa-2x fa-folder float-left color-red-dark mr-3"></i></span>
+
+            <div class="card card-style" *ngFor="let item of directories" data-filter-item
+                attr.data-filter-name="{{item.name | lowercase}}">
+                <div class="content mx-1 mb-1" data-menu="selectFolder" (click)="setMenu(item)">
+                    <span><i class="fa fa-2x fa-folder float-left color-{{ item.color }}-dark mr-3"></i></span>
                     <span><i class="fa fa-arrow-right float-right mr-1 mt-1"></i></span>
-                    <h3 class="">Foldername1</h3>
+                    <h3 class="">{{ item.name }}</h3>
                 </div>
-            </div>
-            <div class="card card-style" data-filter-item attr.data-filter-name="all">
-                <div class="content mx-1 mb-1" data-menu="selectFolder">
-                    <span><i class="fa fa-2x fa-folder float-left color-green-dark mr-3"></i></span>
-                    <span><i class="fa fa-arrow-right float-right mr-1 mt-1"></i></span>
-                    <h3 class="">Foldername2</h3>
-                </div>
-            </div>
-            <div class="card card-style" data-filter-item attr.data-filter-name="all">
-                <div class="content mx-1 mb-1" data-menu="selectFolder">
-                    <span><i class="fa fa-2x fa-folder float-left color-black mr-3"></i></span>
-                    <span><i class="fa fa-arrow-right float-right mr-1 mt-1"></i></span>
-                    <h3 class="">Foldername3</h3>
-                </div>
-    
             </div>
         </div>
-        
+
         <div class="search-no-results disabled mt-4">
             <div class="card card-style mx-2">
-              <div class="content">
-                <p class="mb-n1 font-600 color-highlight">Sorry, there are</p>
-                <h1>No Results</h1>
-                <p>
-                  Your search brought up no results. Try using a different keyword. Or try typying all
-                  to see all items in the demo. These can be linked to anything you want.
-                </p>
-              </div>
+                <div class="content">
+                    <p class="mb-n1 font-600 color-highlight">Sorry, there are</p>
+                    <h1>No Results</h1>
+                    <p>
+                        Your search brought up no results. Try using a different keyword. Or try typying all
+                        to see all items in the demo. These can be linked to anything you want.
+                    </p>
+                </div>
             </div>
-          </div>
+        </div>
 
     </div>
 
     <div id="selectFolder" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
+        <div class="menu-title">
+            <p class="color-highlight" data-menu="menu-addCat"><i class="fa fa-plus"></i> Categorien</p>
+            <h1>{{ selectedMenu.name }}</h1>
+            <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
+        </div>
         <div class="content mb-0 mt-3">
-
-            <h1 class="color-dark-dark">Categorien</h1>
-            <a href="#" routerLink="/storedDocs/files/1" class="card card-style bg-green-light" data-card-height="150">
+            <div class="text-center mb-2" *ngIf="categories.length === 0">
+                <h6 >Dieser Ordner enthält keine Categorie</h6>
+            </div>
+            
+            <a routerLink="/storedDocs/files/{{item.id}}" *ngFor="let item of categories"
+                class="card card-style bg-{{item.color}}-light" data-card-height="150">
+                <br><br><br>
                 <div class="card-center pl-3 ">
-                    <h1 class="color-white mb-n1 font-25">SEW</h1>
-                    <p class="color-white opacity-50 mb-0">G. Mitter </p>
+                    <h1 class="color-white mb-n1 font-25">{{ item.name}}</h1>
                 </div>
                 <div class="card-center">
                     <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
@@ -88,28 +79,53 @@
                 </div>
                 <div class="card-overlay bg-black opacity-60"></div>
             </a>
-            <a href="#" routerLink="/storedDocs/files/1" class="card card-style bg-red-light" data-card-height="150">
-                <div class="card-center pl-3">
-                    <h1 class="color-white mb-n1 font-25">ITP</h1>
-                    <p class="color-white opacity-50 mb-0">A. Gaisberger</p>
-                </div>
-                <div class="card-center">
-                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
-                            class="fa fa-arrow-right"></i></span>
-                </div>
-                <div class="card-overlay bg-black opacity-60"></div>
-            </a>
-            <a href="#" routerLink="/storedDocs/files/1" class="card card-style bg-blue-light" data-card-height="150">
-                <div class="card-center pl-3">
-                    <h1 class="color-white mb-n1 font-25">Mathematik</h1>
-                    <p class="color-white opacity-50 mb-0">M. Überwimmer</p>
-                </div>
-                <div class="card-center">
-                    <span class="icon icon-s float-right bg-theme color-black mr-3 rounded-xl"><i
-                            class="fa fa-arrow-right"></i></span>
-                </div>
-                <div class="card-overlay bg-black opacity-60"></div>
-            </a>
+        </div>
+
+    </div>
+
+    <div id="menu-plusFolder" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
+        <div class="menu-title">
+            <p class="color-highlight">Hinzufügen</p>
+            <h1>Ordner</h1>
+            <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="content mb-0 mt-3">
+            <span>Name</span>
+            <div class="input-style input-light has-icon input-style-1 input-required">
+                <i class="input-icon fa fa-heading" style="padding-left: 2%"></i>
+                <input type="name" [(ngModel)]="addFolder.name" class="rounded-s bg-gray-dark opacity-90" style="opacity: 0.5">
+            </div>
+            <span>Datei-Typ</span>
+            <div class="input-style input-light has-icon input-style-1 input-required mb-3 pb-1">
+                <select name="cars" id="geschlecht" [(ngModel)]="addFolder.color">
+                    <option value="green" class="color-green-dark">Green</option>
+                    <option value="yellow" class="color-yellow-dark">Yellow</option>
+                    <option value="red" class="color-red-dark">Red</option>
+                    <option value="orange" class="color-orange-dark">Orange</option>
+                </select>
+            </div>
+            <span (click)="save();" class="btn btn-full btn-l color-green-dark border-green-dark mt-4 rounded-s mb-2">
+                Speichern
+            </span>
+        </div>
+
+    </div>
+
+    <div id="menu-addCat" class="menu menu-box-modal rounded-m" data-menu-height="auto" data-menu-width="90%">
+        <div class="menu-title">
+            <p class="color-highlight">Hinzufügen</p>
+            <h1>Categorie</h1>
+            <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="content mb-0 mt-3">
+            <span>Name</span>
+            <div class="input-style input-light has-icon input-style-1 input-required">
+                <i class="input-icon fa fa-heading" style="padding-left: 2%"></i>
+                <input type="name" [(ngModel)]="addCatName" class="rounded-s bg-gray-dark opacity-90" style="opacity: 0.5">
+            </div>
+            <span (click)="addCategory(selectedMenu.folderId);" class="btn btn-full btn-l color-green-dark border-green-dark mt-4 rounded-s mb-2">
+                Hinzufügen
+            </span>
         </div>
 
     </div>
